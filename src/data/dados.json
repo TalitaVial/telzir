@@ -1,0 +1,27 @@
+{
+  "dados" : [
+    {"origem": "011", 
+      "destino": "016", 
+      "valor": "1.90"},
+
+    {"origem": "016",
+       "destino": "011", 
+       "valor": "2.90"},
+
+    {"origem": "011", 
+      "destino": "017", 
+      "valor": "1.70"},
+
+    {"origem": "017",
+       "destino": "011",
+        "valor": "2.70"},
+
+    {"origem": "011",
+       "destino": "018", 
+       "valor": "0.90"},
+
+    {"origem": "018", 
+      "destino": "011",
+       "valor": "1.90"}
+  ]
+}
