@@ -1,24 +1,28 @@
 import React from 'react';
 import {TableBody, TableCell, TableContainer, TableHead, TableRow} from '@mui/material';
-import {dados} from '../data/dados.json';
+import dados from '../data/dados.json';
 
+const style = {
+  tableRow: {background: '#87ceeb'},
+  tableCell: {background: '#3b83bd', textColor: '#ffffff'}
+}
 
 function TableTariff(){
  return(
-   <TableContainer>
+   <TableContainer  >
      <TableHead>
-       <TableRow>
-       <TableCell>DDD - Origem</TableCell>
+       <TableRow sx={style.tableCell}>
+       <TableCell >DDD - Origem</TableCell>
        <TableCell>DDD - Destino</TableCell>
        <TableCell>Tarifa por minuto</TableCell>
        </TableRow>
      </TableHead>
      <TableBody>
-       {dados.map(dado =>(
-        <TableRow>
-         <TableCell>{dado.origem}</TableCell>
-          <TableCell>{dado.destino}</TableCell>
-          <TableCell>{dado.valor}</TableCell>
+       {dados.map((dado, index) =>(
+        <TableRow sx={style.tableRow}>
+         <TableCell key={index}>{dado.origem}</TableCell>
+          <TableCell key={index}>{dado.destino}</TableCell>
+          <TableCell key={index}>{dado.valor}</TableCell>
        </TableRow>
        ))}
      </TableBody>

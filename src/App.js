@@ -1,16 +1,33 @@
-import { Typography } from '@mui/material'
-import CalculaTarifa from './components/CalculaTarifa'
+import { Grid, Typography } from '@mui/material'
+import FormSelect from './components/FormSelect'
 import TableTariff from './components/TableTariff'
+import SelectPlan from './components/SelectPlan'
+
+const style = {
+  typography: { textAlign: 'center' }
+}
 
 function App() {
   return (
-    <div className="App">
-      <Typography color="primary" component="h1" variant="h2">
-        Telzir
-      </Typography>
-      <TableTariff />
-      <CalculaTarifa />
-    </div>
+    <Grid container spacing={10}>
+      <Grid item>
+        <Typography
+          sx={style.typography}
+          color="primary"
+          component="h1"
+          variant="h2"
+        >
+          Telzir
+        </Typography>
+        <TableTariff />
+      </Grid>
+      <Grid item>
+        <FormSelect />
+      </Grid>
+      <Grid item>
+        <SelectPlan />
+      </Grid>
+    </Grid>
   )
 }
 
