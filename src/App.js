@@ -1,7 +1,6 @@
 import { Grid, Typography } from '@mui/material'
 import FormSelect from './components/FormSelect'
 import TableTariff from './components/TableTariff'
-import SelectPlan from './components/SelectPlan'
 
 const style = {
   typography: { textAlign: 'center' }
@@ -23,9 +22,6 @@ function App() {
       </Grid>
       <Grid item>
         <FormSelect />
-      </Grid>
-      <Grid item>
-        <SelectPlan />
       </Grid>
     </Grid>
   )
