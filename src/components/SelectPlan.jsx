@@ -5,10 +5,17 @@ import planos from "../data/planos.json"
 
 
 function SelectPlan(){
+
+  function handleSelectPlano(event){
+    let plano = event.target.value
+    console.log(plano)
+  }
+
   return(
     <FormControl>
-      <Typography>Informe seu Plano</Typography>
-      <NativeSelect>
+      <Typography color="primary">Informe seu Plano</Typography>
+      <NativeSelect onChange={handleSelectPlano}>
+        <option value=""></option>
         {planos.map(plano => (
           <option>{plano.plano}</option>
         ))}

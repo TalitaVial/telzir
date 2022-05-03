@@ -19,8 +19,9 @@ function FormSelect(){
     <Grid container spacing={6}>
       <Grid item>
         <FormControl>
-          <Typography>DDD de Origem</Typography>
+          <Typography color="primary">DDD de Origem</Typography>
           <NativeSelect variant='filled' onChange={handleSelectOrigem}>
+            <option value=""></option>
             {dados.map((dado, index) => (
             <option key={index}>{dado.origem}</option>
             ))}
@@ -29,8 +30,9 @@ function FormSelect(){
       </Grid>
       <Grid item>
         <FormControl>
-          <Typography>DDD de Destino</Typography>
+          <Typography color="primary">DDD de Destino</Typography>
           <NativeSelect variant='filled' onChange={handleSelectDestino}>
+            <option value=""></option>
             {dados.map((dado, index) => (
             <option key={index}>{dado.destino}</option>
             ))}
