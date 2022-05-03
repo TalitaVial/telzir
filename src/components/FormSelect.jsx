@@ -1,28 +1,43 @@
-import { FormControl, NativeSelect, Typography } from '@mui/material';
+import { FormControl, Grid, NativeSelect, Typography } from '@mui/material';
 import React from 'react';
 import dados from '../data/dados.json'
 
-function FormSelect(){
-  return (
-    <>
-      <FormControl>
-      <Typography>DDD de Origem</Typography>
-      <NativeSelect variant='filled'>
-        {dados.map((dado, index) => (
-           <option key={index}>{dado.origem}</option>
-        ))}
-      </NativeSelect>
-      </FormControl>
-      <FormControl>
-      <Typography>DDD de Destino</Typography>
-       <NativeSelect variant='filled'>
-        {dados.map((dado, index) => (
-           <option key={index}>{dado.origem}</option>
-        ))}
-      </NativeSelect>
-      </FormControl>
-    </>
 
+function FormSelect(){
+
+  function handleSelectOrigem(event){
+    const origem = event.target.value
+    console.log(origem)
+  }
+
+  function handleSelectDestino(event){
+    const destino = event.target.value
+    console.log(destino)
+  }
+
+  return (
+    <Grid container spacing={6}>
+      <Grid item>
+        <FormControl>
+          <Typography>DDD de Origem</Typography>
+          <NativeSelect variant='filled' onChange={handleSelectOrigem}>
+            {dados.map((dado, index) => (
+            <option key={index}>{dado.origem}</option>
+            ))}
+          </NativeSelect>
+        </FormControl>
+      </Grid>
+      <Grid item>
+        <FormControl>
+          <Typography>DDD de Destino</Typography>
+          <NativeSelect variant='filled' onChange={handleSelectDestino}>
+            {dados.map((dado, index) => (
+            <option key={index}>{dado.destino}</option>
+            ))}
+          </NativeSelect>
+        </FormControl>
+      </Grid>
+    </Grid>
   )
 }
 
