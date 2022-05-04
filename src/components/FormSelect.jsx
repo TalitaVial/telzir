@@ -1,18 +1,27 @@
 import { FormControl, NativeSelect, Typography } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 import dados from '../data/dados.json'
 import planos from "../data/planos.json"
 
 function FormSelect(){
+
+  const [tempo, setTempo] = useState("")
+
   return (
     <form onSubmit={(e)=>{e.preventDefault()
-      console.log(e.target['ddd'].value, e.target['dddd'].value)}}>
+      const tarifa = (e.target['dddd'].value)
+      const tempoPlano = (e.target['tempoplano'].value)
+      console.log(tarifa)
+      console.log(tempo)
+      console.log(tempoPlano)
+    
+      }}>
       <FormControl>
         <Typography color="primary">DDD de Origem</Typography>
           <NativeSelect variant='filled' id='ddd'>
             <option value=""></option>
             {dados.map((dado, index) => (
-            <option value={dado.valor} key={index}>{dado.origem}</option>
+            <option key={index}>{dado.origem}</option>
             ))}
           </NativeSelect>
       </FormControl>
@@ -25,13 +34,16 @@ function FormSelect(){
           ))}
         </NativeSelect>
       </FormControl>
-      <input placeholder='Tempo da chamada' type="number" id="tempo"/>
+      <input placeholder='Tempo da chamada' type="number" id="tempo" value={tempo} onChange={(event)=>{
+        let temp = event.target.value
+        setTempo(temp)
+      }}/>
       <FormControl>
         <Typography color="primary">Informe seu Plano</Typography>
-        <NativeSelect>
+        <NativeSelect id='tempoplano'>
         <option value=""></option>
-        {planos.map(plano => (
-          <option >{plano.plano}</option>
+        {planos.map((plano, index) => (
+          <option value={plano.tempoplano} key={index} >{plano.plano}</option>
         ))}
         </NativeSelect>
       </FormControl>
