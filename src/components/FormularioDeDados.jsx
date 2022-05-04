@@ -1,21 +1,33 @@
-import { FormControl, NativeSelect, Typography } from '@mui/material';
-import React, { useState } from 'react';
+import { Button, FormControl, NativeSelect, Typography, Grid } from '@mui/material';
+import React from 'react';
 import dados from '../data/dados.json'
 import planos from "../data/planos.json"
 
-function FormSelect(){
+function FormularioDeDados(){
+  const calcularTarifaSemPlano =(tarifa, tempoChamada)=>{
+    return tarifa * tempoChamada
+  }
 
-  const [tempo, setTempo] = useState("")
+  const calcularTarifaComPlano = (tarifa, tempoPlano, tempoChamada)=>{
+
+    return tempoChamada<tempoPlano? 0 : tarifa * (tempoChamada - tempoPlano)
+  }
+
+  const handleSubmit=(e)=>{
+    e.preventDefault()
+    const tarifa = e.target['dddd'].value
+    const tempoPlano = e.target['tempoplano'].value
+    const tempoChamada = e.target['tempo'].value
+
+    calcularTarifaComPlano(tarifa, tempoPlano, tempoChamada)
+    calcularTarifaSemPlano(tarifa, tempoChamada)
+    
+    }
 
   return (
-    <form onSubmit={(e)=>{e.preventDefault()
-      const tarifa = (e.target['dddd'].value)
-      const tempoPlano = (e.target['tempoplano'].value)
-      console.log(tarifa)
-      console.log(tempo)
-      console.log(tempoPlano)
-    
-      }}>
+    <Grid container >
+    <form onSubmit={handleSubmit}>
+      <Grid item>
       <FormControl>
         <Typography color="primary">DDD de Origem</Typography>
           <NativeSelect variant='filled' id='ddd'>
@@ -34,10 +46,7 @@ function FormSelect(){
           ))}
         </NativeSelect>
       </FormControl>
-      <input placeholder='Tempo da chamada' type="number" id="tempo" value={tempo} onChange={(event)=>{
-        let temp = event.target.value
-        setTempo(temp)
-      }}/>
+      </Grid>
       <FormControl>
         <Typography color="primary">Informe seu Plano</Typography>
         <NativeSelect id='tempoplano'>
@@ -47,9 +56,12 @@ function FormSelect(){
         ))}
         </NativeSelect>
       </FormControl>
-      <input value="enviar" type="submit"/>
+      <Grid item>
+      <input placeholder='Tempo da chamada' type="number" id="tempo"/>
+      </Grid>
+      <Button variant="outlined" type="submit">Calcular</Button>
     </form>
-
+    </Grid>
   )}
 
-export default FormSelect
+export default FormularioDeDados
