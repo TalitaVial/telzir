@@ -1,18 +1,18 @@
 [
   {
-    "plano": "Fale Mais 30",
+    "nome": "Fale Mais 30",
     "tempoplano": "30"
     
     
   },
   {
-    "plano": "Fale Mais 60",
+    "nome": "Fale Mais 60",
     "tempoplano": "60"
     
   },
 
   {
-    "plano":"Fale Mais 120",
+    "nome":"Fale Mais 120",
     "tempoplano": "120"
   }
 ]

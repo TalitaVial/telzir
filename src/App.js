@@ -1,21 +1,33 @@
-import { Grid } from '@mui/material'
-import FormularioDeDados from './components/FormularioDeDados'
-import TableTariff from './components/TableTariff'
+import CalculadoraDeTarifa from './components/CalculadoraDeTarifa'
+import TabelaDeTarifa from './components/TabelaDeTarifa'
+import { Box, Typography } from '@mui/material'
 
 const style = {
-  grid: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
+  typography: {
+    width: '100%',
+    textAlign: 'center',
+    marginBottom: '3rem',
+    boxShadow: '2px 3px 8px #add8e6'
+  },
+  box: { display: 'flex', alignItems: 'center', justifyContent: 'center' }
 }
 
 function App() {
   return (
-    <Grid sx={style.grid}>
-      <TableTariff />
-      <FormularioDeDados />
-    </Grid>
+    <>
+      <Typography
+        color="primary"
+        sx={style.typography}
+        component="h1"
+        variant="h2"
+      >
+        TELZIR
+      </Typography>
+      <Box sx={style.box}>
+        <CalculadoraDeTarifa />
+        <TabelaDeTarifa />
+      </Box>
+    </>
   )
 }
 
