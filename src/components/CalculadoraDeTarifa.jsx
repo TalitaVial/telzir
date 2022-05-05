@@ -28,7 +28,9 @@ function CalculadoraDeTarifa(){
   }
 
   const handleSubmit=(e)=>{
+    
     e.preventDefault()
+    console.log(handleSubmit)
     const tarifa = e.target['dddd'].value
     const tempoPlano = e.target['tempoplano'].value
     const tempoChamada = e.target['tempo'].value
@@ -36,7 +38,7 @@ function CalculadoraDeTarifa(){
     const tarifaComPlano = calcularTarifaComPlano(tarifa, tempoPlano, tempoChamada)
     const tarifaSemPlano = calcularTarifaSemPlano(tarifa, tempoChamada)
     
-    setTarifa({semPlano: tarifaComPlano, comPlano: tarifaSemPlano})
+    setTarifa({comPlano: tarifaComPlano, semPlano: tarifaSemPlano})
     }
 
   return (
@@ -45,13 +47,19 @@ function CalculadoraDeTarifa(){
         component="h2"
         variant="h4">Calcule sua Tarifa</Typography>
       <Box sx={style.box}>
-        <Card variant='outlined' sx={style.card}>{tarifa.semPlano.toLocaleString('pt-br',{style: 'currency',currency: 'BRL'})}</Card>
-        <Card variant='outlined' sx={style.card}>{tarifa.comPlano.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</Card>
+        <Box>
+        <Typography>Com Fale Mais: </Typography>
+        <Card variant='outlined' sx={style.card}>{tarifa.comPlano.toLocaleString('pt-br',{style: 'currency',currency: 'BRL'})}</Card>
+        </Box>
+        <Box>
+        <Typography>Sem Fale Mais: </Typography>
+        <Card variant='outlined' sx={style.card}>{tarifa.semPlano.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</Card>
+        </Box>
       </Box>
-      <form onSubmit={handleSubmit}>
+      <form data-testid="form" onSubmit={handleSubmit}>
         <Box sx={style.box}>
           <FormControl sx={style.formControl}>
-          <label>DDD de Origem: </label>
+          <label for='ddd'>DDD de Origem: </label>
             <NativeSelect onChange={(e)=>{setOrigemDDD(e.target.value)}} variant='filled' id='ddd'>
               <option value=""></option>
               {dados.map((dado, index) => (
@@ -60,7 +68,7 @@ function CalculadoraDeTarifa(){
             </NativeSelect>
           </FormControl>
           <FormControl sx={style.formControl}>
-          <label>DDD de Destino: </label>
+          <label for="dddd">DDD de Destino: </label>
             <NativeSelect disabled={origemDDD === ""} variant='filled' id='dddd'>
               <option value=""></option>
               {dados.filter(d=>d.origem === origemDDD).map((dado, index) => (
@@ -71,7 +79,7 @@ function CalculadoraDeTarifa(){
         </Box>
         <Box sx={style.box}>
           <FormControl sx={style.formControl}>
-            <label>Informe seu Plano</label>
+            <label for="tempoplano">Informe seu Plano</label>
               <NativeSelect id='tempoplano'>
                 <option value=""></option>
                 {planos.map((plano, index) => (
@@ -80,7 +88,7 @@ function CalculadoraDeTarifa(){
               </NativeSelect>
           </FormControl>
           <FormControl sx={style.formControl}>
-          <label>Tempo da Chamada: </label>
+          <label for="tempo">Tempo da Chamada: </label>
           <Input type="number" id="tempo"></Input>
           </FormControl>
         </Box>
