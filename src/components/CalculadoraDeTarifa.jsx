@@ -15,7 +15,7 @@ const style = {
 
 
 function CalculadoraDeTarifa(){
-
+  const [origemDDD, setOrigemDDD] = useState('')
   const [tarifa, setTarifa] = useState({semPlano: 0, comPlano: 0})
 
   const calcularTarifaSemPlano =(tarifa, tempoChamada)=>{
@@ -52,7 +52,7 @@ function CalculadoraDeTarifa(){
         <Box sx={style.box}>
           <FormControl sx={style.formControl}>
           <label>DDD de Origem: </label>
-            <NativeSelect variant='filled' id='ddd'>
+            <NativeSelect onChange={(e)=>{setOrigemDDD(e.target.value)}} variant='filled' id='ddd'>
               <option value=""></option>
               {dados.map((dado, index) => (
               <option key={index}>{dado.origem}</option>
@@ -61,9 +61,9 @@ function CalculadoraDeTarifa(){
           </FormControl>
           <FormControl sx={style.formControl}>
           <label>DDD de Destino: </label>
-            <NativeSelect variant='filled' id='dddd'>
+            <NativeSelect disabled={origemDDD === ""} variant='filled' id='dddd'>
               <option value=""></option>
-              {dados.map((dado, index) => (
+              {dados.filter(d=>d.origem === origemDDD).map((dado, index) => (
               <option value={dado.valor} key={index}>{dado.destino}</option>
               ))}
             </NativeSelect>
